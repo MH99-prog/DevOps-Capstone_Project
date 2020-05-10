@@ -1,0 +1,23 @@
+{apiVersion:"v1",
+	clusters:[
+		{cluster:
+			{"certificate-authority-data":.cluster.certificateAuthority.data,server:.cluster.endpoint},
+			name:.cluster.name
+		}],
+	contexts:[
+		{context:
+			{cluster:"\(.cluster.name).eu-central-1.eksctl.io",
+			user:"\(.cluster.name)-adm@\(.cluster.name).eu-central-1.eksctl.io"},
+		name:"\(.cluster.name)-adm@\(.cluster.name).eu-central-1.eksctl.io"}],
+	"current-context":"\(.cluster.name)-adm@\(.cluster.name).eu-central-1.eksctl.io",
+	kind:"Config",
+	preferences:{},
+	users:[
+		{name:"\(.cluster.name)-adm@\(.cluster.name).eu-central-1.eksctl.io",
+		user:{
+			exec:{
+				apiVersion:"client.authentication.k8s.io/v1alpha1",
+				args:["token","-i",.cluster.name],
+				command:"aws-iam-authenticator",
+				env:null}}}]
+}
